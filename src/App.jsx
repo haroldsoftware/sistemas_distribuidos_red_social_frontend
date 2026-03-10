@@ -1,0 +1,26 @@
+import { Routes, Route, Navigate } from 'react-router-dom';
+import { useAuth } from './context/AuthContext.jsx';
+import Login from './pages/Login.jsx';
+import Register from './pages/Register.jsx';
+import Feed from './pages/Feed.jsx';
+
+function PrivateRoute({ children }) {
+  const { user } = useAuth();
+  return user ? children : <Navigate to="/login" replace />;
+}
+
+function PublicRoute({ children }) {
+  const { user } = useAuth();
+  return user ? <Navigate to="/feed" replace /> : children;
+}
+
+export default function App() {
+  return (
+    <Routes>
+      <Route path="/" element={<Navigate to="/feed" replace />} />
+      <Route path="/login" element={<PublicRoute><Login /></PublicRoute>} />
+      <Route path="/register" element={<PublicRoute><Register /></PublicRoute>} />
+      <Route path="/feed" element={<PrivateRoute><Feed /></PrivateRoute>} />
+    </Routes>
+  );
+}
