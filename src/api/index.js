@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: '/api',
+  baseURL: 'https://red-social-service-389205780371.us-east1.run.app/api',
 });
 
 // Adjuntar token JWT en cada request si existe

@@ -7,7 +7,7 @@ export default defineConfig({
     port: 5173,
     proxy: {
       '/api': {
-        target: 'http://localhost:3001',
+        target: 'https://red-social-service-389205780371.us-east1.run.app',
         changeOrigin: true,
       },
     },
